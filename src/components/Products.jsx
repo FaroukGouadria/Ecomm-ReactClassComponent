@@ -7,6 +7,9 @@ export default class Products extends Component {
                 <div className="card m-2">
                     <div className="card-header">
                         {this.props.product.category}
+                        <span className="pull-right" onClick={() => {this.props.onDelete(this.props.product )}}>
+                            <i className="fa fa-times"  ></i>
+                        </span>
                     </div>
                     <div className="card-body">
                         <h5 className="card-title">Designation: {this.props.product.name}</h5>
@@ -18,8 +21,8 @@ export default class Products extends Component {
                         <div className="float-start">
                             <span className='badge' style={{ color: "black", fontSize: "15px" }}>{this.props.product.quantite}</span>
                             <div className="btn-group">
-                                <button className='btn btn-outline-success' onClick={() => { this.props.onIcrement(this.props.product,5) }}>+</button>
-                                <button className='btn btn-outline-success' onClick={() => { this.props.onDecrement(this.props.product,0) }}>-</button>
+                                <button className='btn btn-outline-success' onClick={() => { this.props.onIcrement(this.props.product, 5) }}>+</button>
+                                <button className='btn btn-outline-success' onClick={() => { this.props.onDecrement(this.props.product, 0) }}>-</button>
                             </div>
                         </div>
                         <div className="float-end"> {this.props.children}</div>

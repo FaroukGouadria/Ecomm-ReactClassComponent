@@ -29,7 +29,8 @@ class ShoppingCart extends Component {
                                     key={prod.id}
                                     product={prod}
                                     onIcrement={this.handleIncrement}
-                                    onDecrement={this.handleDecrement}>
+                                    onDecrement={this.handleDecrement}
+                                    onDelete={this.handleDelete}>
                                     <button className='btn btn-primary'>Buy Now</button>
                                 </Products>
                             );
@@ -69,6 +70,21 @@ class ShoppingCart extends Component {
             })
         }
 
+    }
+
+   handleDelete = (product)=>{
+       let allProducts = [...this.state.products]
+       let index = allProducts.indexOf(product);
+    if(window.confirm("Are you sure to delete ?"))
+    {
+
+        //delete product based in index
+       allProducts.splice(index,1);
+       
+       this.setState({
+           products:allProducts,
+       });
+    }; 
     }
 }
 
