@@ -2,19 +2,30 @@ import React, { Component } from 'react';
 import Products from './Products';
 
 class ShoppingCart extends Component {
-    state = {
-        pageTitle: "ShoppingCart",
-        productCount: 0,
-        products: [
-            { id: 1, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
-            { id: 2, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
-            { id: 3, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
-            { id: 4, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
-            { id: 5, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
-            { id: 6, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
-            { id: 7, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
-        ]
+    //execute when the component is mounted 
+    constructor(props) {
+        console.log("constructor of shopping cart");
+        super(props);//calling superClass's constructor
+        //initilization of states
+        this.state = {
+            pageTitle: "ShoppingCart",
+            productCount: 0,
+            products: []
+        }
     }
+    // state = {
+    //     pageTitle: "ShoppingCart",
+    //     productCount: 0,
+    //     products: [
+    //         { id: 1, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
+    //         { id: 2, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
+    //         { id: 3, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
+    //         { id: 4, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
+    //         { id: 5, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
+    //         { id: 6, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
+    //         { id: 7, productName: "Iphone", price: 1200, quantite: 0, category: "informatique" },
+    //     ]
+    // }
     render() {
         return (
             <div className="container-fluid">
@@ -43,6 +54,40 @@ class ShoppingCart extends Component {
     }
     //render ends
 
+    //executes after constcuctor and render method
+    componentDidMount = async()=> {
+       // console.log('Mounted component shobbingCart')
+        //fetch data from server
+        var response = await fetch("http://localhost:5001/products",{method:"GET"});
+       var product= await response.json();
+        console.log(product);
+
+        this.setState({products:product});
+
+
+
+       //premiere methode sans async and await
+        // promise.then((response)=>{
+        //     console.log(response);
+        //     var promise2=response.json();
+        //     promise2.then((product)=>{
+        //         console.log(product);
+        //         this.setState({products:product})
+        //     })
+        // }) 
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log("updateComponent",
+            prevProps,
+            prevState,
+            this.props,
+            this.state
+        );
+    }
+    //exectutes when the current instance of cunnrent component is being deleted from memory
+    componentWillUnmount() {
+        console.log('componentWillUnmount')
+    }
 
     handleIncrement = (product, max) => {
 
@@ -72,19 +117,24 @@ class ShoppingCart extends Component {
 
     }
 
-   handleDelete = (product)=>{
-       let allProducts = [...this.state.products]
-       let index = allProducts.indexOf(product);
-    if(window.confirm("Are you sure to delete ?"))
-    {
+    handleDelete = (product) => {
+        let allProducts = [...this.state.products]
+        let index = allProducts.indexOf(product);
+        if (window.confirm("Are you sure to delete ?")) {
 
-        //delete product based in index
-       allProducts.splice(index,1);
-       
-       this.setState({
-           products:allProducts,
-       });
-    }; 
+            //delete product based in index
+            allProducts.splice(index, 1);
+
+            this.setState({
+                products: allProducts,
+            });
+        };
+    }
+    componentDidCatch(error, info) {
+        console.log("componentError shoppingCarte")
+        console.log(error, info);
+
+        localStorage.lastError = `error : ${error}\ninfo : ${JSON.stringify(info)}`;
     }
 }
 

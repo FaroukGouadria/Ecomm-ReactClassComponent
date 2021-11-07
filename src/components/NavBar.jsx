@@ -1,11 +1,10 @@
 import React from 'react'
-import "./nav.css";
 function NavBar() {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-style">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="/#">My App</a>
+                    <a className="navbar-brand" href="/">My App</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -15,10 +14,16 @@ function NavBar() {
                                 <a className="nav-link" href="/">Home</a>
                             </li>
                             <li className="nav-item">
+                                <a className="nav-link" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link" href="/customers">Customers</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/cart">Cart</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/login">Login</a>
                             </li>
                         </ul>
                     </div>

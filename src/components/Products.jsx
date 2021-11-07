@@ -1,13 +1,21 @@
 import React, { Component } from 'react'
 
 export default class Products extends Component {
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            product: this.props.product,
+        }
+    }
     render() {
+        console.log(this.props);
         return (
             <div className="col-lg-4">
                 <div className="card m-2">
                     <div className="card-header">
                         {this.props.product.category}
-                        <span className="pull-right" onClick={() => {this.props.onDelete(this.props.product )}}>
+                        <span className="pull-right" onClick={() => { this.props.onDelete(this.props.product) }}>
                             <i className="fa fa-times"  ></i>
                         </span>
                     </div>
@@ -31,5 +39,14 @@ export default class Products extends Component {
                 </div>
             </div>
         )
+    }
+    componentDidMount() {
+        console.log('componentWillmount ProductComponent product')
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log('componentDidUpdate ProductComponent product')
+    }
+    componentWillUnmount() {
+        console.log('componentWillUnmount ProductComponent')
     }
 }
