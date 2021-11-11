@@ -56,6 +56,7 @@ class ShoppingCart extends Component {
 
     //executes after constcuctor and render method
     componentDidMount = async()=> {
+        document.title="ShoppingCart - MyApp"
        // console.log('Mounted component shobbingCart')
         //fetch data from server
         var response = await fetch("http://localhost:5001/products",{method:"GET"});

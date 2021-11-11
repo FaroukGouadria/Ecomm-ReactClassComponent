@@ -8,6 +8,9 @@ class Dashboard extends Component {
             </div>
         );
     }
+    componentDidMount() {
+        document.title = "Dashboard-MyApp"
+    } 
 }
 
 export default Dashboard;

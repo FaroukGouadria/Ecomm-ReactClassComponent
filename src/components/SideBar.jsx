@@ -6,13 +6,16 @@ export default class SideBar extends Component {
             <div className="mt-2">
                 <h4 className="p-1 border-bottom">SideBar</h4>    
                 <div className="list-group mt-2">
-                    <NavLink to="/dashboard" className="list-group-item list-group-item-action">
+                    <NavLink to="/dashboard" className="list-group-item list-group-item-action"
+                    activeClassName="active">
                         Dashboard
                     </NavLink>
-                    <NavLink to="/cart" className="list-group-item list-group-item-action">
+                    <NavLink to="/cart" className="list-group-item list-group-item-action"
+                        activeClassName="active">
                         CartShopping
                     </NavLink>
-                    <NavLink to="customers" className="list-group-item list-group-item-action">
+                    <NavLink to="customers" className="list-group-item list-group-item-action"
+                        activeClassName="active">
                         Customers
                     </NavLink>
                 </div>

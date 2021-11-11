@@ -45,4 +45,7 @@ export default class ErrorPAge extends Component {
             
         )
     }
+    componentDidMount() {
+        document.title = "404 - MyApp"
+    }
 }

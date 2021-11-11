@@ -82,6 +82,9 @@ export default class CustomersList extends Component {
         )
 
     }
+    componentDidMount() {
+        document.title = "Customers-MyApp"
+    }
     changePick=(cust,index)=>{
         //get exixting customer
             var curtArray=this.state.customers

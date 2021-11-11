@@ -3,38 +3,41 @@ import history from "../history";
 export default class Login extends Component {
     constructor(props) {
         super(props)
-        this.state = { email: "", password: "", message: "" }
+        this.state = { email: "admin@admin.com", password: "admin", message: "" }
     }
     render() {
         return (
-            <div className="col-lg-9">
-                <h4 className="m-1 p-2 border-bottom" >Login</h4>
+            <div className="row">
+                <div className="col-lg-6 mx-auto">
+                    <h4 className="my-1 py-2 border-bottom" >Login</h4>
 
-                <div className="form-group form-row p-2 m-2">
-                    <label htmlFor="emailf" className="col-lg-4">EMAIL</label>
-                    <input type="email" className="form-control" value={this.state.email}
-                        onChange={(event) => {
-                            this.setState({ email: event.target.value });
-                            console.log(this.state.email);
-                        }
-                        } />
+                    <div className="form-group form-row p-2 m-2">
+                        <label htmlFor="emailf" className="col-lg-4">EMAIL</label>
+                        <input type="email" className="form-control" value={this.state.email}
+                            onChange={(event) => {
+                                this.setState({ email: event.target.value });
+                                console.log(this.state.email);
+                            }
+                            } />
+                    </div>
+
+                    <div className="form-group form-row  p-2 m-2">
+                        <label htmlFor="passordf" className="col-lg-4">PASSWORD</label>
+                        <input type="password" className="form-control" value={this.state.password}
+                            onChange={(event) => { this.setState({ password: event.target.value }) }} />
+                    </div>
+
+                    <div className=" text-end m-2 p-2">
+
+                        <button className="btn btn-primary m-2" onClick={this.onLoginClick}>   Login</button>
+                    </div>
+                    <div className="text-center" style={{ fontSize: "30px" }} >
+                        {this.state.message}
+                    </div>
+
                 </div>
-
-                <div className="form-group form-row  p-2 m-2">
-                    <label htmlFor="passordf" className="col-lg-4">PASSWORD</label>
-                    <input type="password" className="form-control" value={this.state.password}
-                        onChange={(event) => { this.setState({ password: event.target.value }) }} />
-                </div>
-
-                <div className=" text-end m-2 p-2">
-
-                    <button className="btn btn-primary m-2" onClick={this.onLoginClick}>   Login</button>
-                </div>
-                <div className="text-center" style={{fontSize:"30px"}} >
-                    {this.state.message}
-                </div>
-
             </div>
+        
         )
     }
 
@@ -84,5 +87,8 @@ export default class Login extends Component {
         //         </span>
         //     });
         // }
+    }
+    componentDidMount(){
+        document.title="Login-MyApp"
     }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 
 export default class Products extends Component {
     constructor(props) {
@@ -33,7 +34,13 @@ export default class Products extends Component {
                                 <button className='btn btn-outline-success' onClick={() => { this.props.onDecrement(this.props.product, 0) }}>-</button>
                             </div>
                         </div>
-                        <div className="float-end"> {this.props.children}</div>
+                        <div className="float-end">
+                            <Link to={`products/${this.state.product.id}`} className="m-2" >
+                                    Details
+                                </Link>
+                            {this.props.children}
+
+                        </div>
 
                     </div>
                 </div>
