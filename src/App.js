@@ -10,20 +10,32 @@ import Dashboard from './components/Dashboard';
 import ErrorPAge from './components/ErrorPAge';
 import Home from './components/Home';
 export default class App extends Component{
+  constructor(props){
+    super(props);
+    this.state={isLoggedIn:false}
+  }
   render(){
      return (
   <Router>
-<NavBar/>
+<NavBar isLoggedIn={this.state.isLoggedIn}/>
+ <div className="container-fluid">
   <Switch>
     <Route path="/customers" exact component={ CustomersList }/>
     <Route path="/cart" exact component={ ShoppingCart }/>
-     <Route path="/login" exact component={ Login }/>
-     <Route path="/" exact component={ Home }/>
+     <Route path="/" exact render={(props)=> (<Login {...props} updateLogginIn={this.updateLogginIn}/>) }/>
      <Route path="/dashboard" exact component={ Dashboard }/>
      <Route path="*" exact component={ ErrorPAge }/>
   </Switch>
+
+</div>
 </Router>
   
   );
+  }
+  updateLogginIn=(status)=>{
+    this.setState({
+      isLoggedIn:status
+    })
+    
   }
 }

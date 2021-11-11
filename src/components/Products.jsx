@@ -11,7 +11,7 @@ export default class Products extends Component {
     render() {
         console.log(this.props);
         return (
-            <div className="col-lg-4">
+            <div className="col-lg-6">
                 <div className="card m-2">
                     <div className="card-header">
                         {this.props.product.category}

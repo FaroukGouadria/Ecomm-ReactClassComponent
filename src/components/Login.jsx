@@ -46,16 +46,18 @@ export default class Login extends Component {
         var body= await response.json();
         console.log(body);
          if (body.length > 0) {
-            //success
+            //success:update the message property of state of current component
             this.setState({
                 message: <span className="text-success">Successfully logged-in
                 </span>
             });
+            //call the AppComponent's updateLoggedIn method
+             this.props.updateLogginIn(true);
         } else {
             //error
             this.setState({
                 message: <span className="text-danger">failed logged-in
-                </span>
+                </span> 
             });
         }
 

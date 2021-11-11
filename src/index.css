@@ -1,22 +1,14 @@
 span{
   color: black;
 }
-
+.nav-link.active{
+  border-bottom: 2px solid #ffffff;
+  box-shadow: #7cffff;
+}
 
 /***********************************
 			/* 1. BODY */
 /***********************************/
-
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-text-size-adjust: none;
-}
-
-html, body {
-  height: 100%;
-  overflow: hidden;
-}
 
 body {
   padding: 0;
