@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
-
+import history from "../history"
 class NavBar extends Component {
     render() {
         return (
-            <React.Fragment>
+
                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark navbar-style">
                         My-Shop
                     <button
@@ -84,6 +84,7 @@ class NavBar extends Component {
                                         href="/#"
                                         className="nav-link"
                                         activeClassName="active"
+                                        onClick={this.logoutClick}
                                     >
                                        LogOut
                                     </a>
@@ -94,8 +95,16 @@ class NavBar extends Component {
                         </ul>
                     </div>
                 </nav>
-            </React.Fragment>
         );
+    }
+    logoutClick=(event)=>{
+        //refresh page when the user Click
+        event.preventDefault();
+        //update login state to FALSE
+        this.props.updateLogginIn(false);
+
+        //navigate login component
+        history.replace("/");
     }
 }
 

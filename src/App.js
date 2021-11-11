@@ -9,6 +9,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ErrorPAge from './components/ErrorPAge';
 import history from "./history";
+import SideBar from './components/SideBar';
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -17,15 +18,27 @@ export default class App extends Component{
   render(){
      return (
   <Router history={history}>
-<NavBar isLoggedIn={this.state.isLoggedIn}/>
+<NavBar isLoggedIn={this.state.isLoggedIn} updateLogginIn={this.updateLogginIn}/>
  <div className="container-fluid">
-  <Switch>
-    <Route path="/customers" exact component={ CustomersList }/>
-    <Route path="/cart" exact component={ ShoppingCart }/>
-     <Route path="/" exact render={(props)=> (<Login {...props} updateLogginIn={this.updateLogginIn}/>) }/>
-     <Route path="/dashboard" exact component={ Dashboard }/>
-     <Route path="*" exact component={ ErrorPAge }/>
-  </Switch>
+   <div className="row">
+      <div className="col-lg-3">
+        {this.state.isLoggedIn?(
+            <SideBar></SideBar>
+        ):(
+          ""
+          )};
+       
+      </div>
+      <div className="col-lg-9">
+          <Switch>
+            <Route path="/customers" exact component={ CustomersList }/>
+            <Route path="/cart" exact component={ ShoppingCart }/>
+            <Route path="/" exact render={(props)=> (<Login {...props} updateLogginIn={this.updateLogginIn}/>) }/>
+            <Route path="/dashboard" exact component={ Dashboard }/>
+            <Route path="*" exact component={ ErrorPAge }/>
+          </Switch>
+      </div>
+   </div>
 
 </div>
 </Router>
@@ -35,7 +48,6 @@ export default class App extends Component{
   updateLogginIn=(status)=>{
     this.setState({
       isLoggedIn:status
-    })
-
+    });
   }
 }
