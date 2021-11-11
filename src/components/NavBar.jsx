@@ -77,6 +77,20 @@ class NavBar extends Component {
                             ) : (
                                 ""
                             )}
+
+                            {this.props.isLoggedIn ? (
+                                <li className="nav-item">
+                                    <a
+                                        href="/#"
+                                        className="nav-link"
+                                        activeClassName="active"
+                                    >
+                                       LogOut
+                                    </a>
+                                </li>
+                            ) : (
+                                ""
+                            )}
                         </ul>
                     </div>
                 </nav>

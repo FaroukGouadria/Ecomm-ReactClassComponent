@@ -3,12 +3,12 @@ import './App.css';
 import CustomersList from './components/CustomersList';
 import ShoppingCart from './components/ShoppingCart';
 import NavBar from './components/NavBar';
-import {BrowserRouter as Router,Route,Switch} from "react-router-dom"
+import {Router,Route,Switch} from "react-router-dom"
 import { Component } from 'react';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ErrorPAge from './components/ErrorPAge';
-import Home from './components/Home';
+import history from "./history";
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -16,7 +16,7 @@ export default class App extends Component{
   }
   render(){
      return (
-  <Router>
+  <Router history={history}>
 <NavBar isLoggedIn={this.state.isLoggedIn}/>
  <div className="container-fluid">
   <Switch>
@@ -36,6 +36,6 @@ export default class App extends Component{
     this.setState({
       isLoggedIn:status
     })
-    
+
   }
 }
