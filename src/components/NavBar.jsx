@@ -104,7 +104,10 @@ class NavBar extends Component {
         this.props.updateLogginIn(false);
 
         //navigate login component
-        history.replace("/");
+        // history.replace("/");
+        
+        //hashRoute
+        document.location.hash="/";
     }
 }
 

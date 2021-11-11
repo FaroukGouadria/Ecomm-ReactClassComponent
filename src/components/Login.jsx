@@ -57,7 +57,7 @@ export default class Login extends Component {
             //call the AppComponent's updateLoggedIn method
              this.props.updateLogginIn(true);
              //navigate to dashboard
-             history.replace("/dashboard");
+             this.props.history.replace("/dashboard");
         } else {
             //error
             this.setState({

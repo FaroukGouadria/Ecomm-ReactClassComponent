@@ -3,12 +3,12 @@ import './App.css';
 import CustomersList from './components/CustomersList';
 import ShoppingCart from './components/ShoppingCart';
 import NavBar from './components/NavBar';
-import {Router,Route,Switch} from "react-router-dom"
+import {Router,Route,Switch,HashRouter} from "react-router-dom"
 import { Component } from 'react';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import ErrorPAge from './components/ErrorPAge';
-import history from "./history";
+// import history from "./history";
 import SideBar from './components/SideBar';
 import ProductByID from './components/ProductByID';
 export default class App extends Component{
@@ -18,7 +18,8 @@ export default class App extends Component{
   }
   render(){
      return (
-  <Router history={history}>
+  <HashRouter >
+  {/* //router=>history={history} */}
 <NavBar isLoggedIn={this.state.isLoggedIn} updateLogginIn={this.updateLogginIn}/>
  <div className="container-fluid">
    <div className="row">
@@ -43,7 +44,7 @@ export default class App extends Component{
    </div>
 
 </div>
-</Router>
+</HashRouter>
   
   );
   }
