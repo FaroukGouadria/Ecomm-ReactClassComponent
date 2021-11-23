@@ -11,6 +11,7 @@ import ErrorPAge from './components/ErrorPAge';
 // import history from "./history";
 import SideBar from './components/SideBar';
 import ProductByID from './components/ProductByID';
+import InsertCustomers from './components/InsertCustomers';
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -38,7 +39,9 @@ export default class App extends Component{
             <Route path="/" exact render={(props)=> (<Login {...props} updateLogginIn={this.updateLogginIn}/>) }/>
             <Route path="/dashboard" exact component={ Dashboard }/>
              <Route path="/products/:id" exact component={ ProductByID }/>
+              <Route path="/new-customer" exact component={ InsertCustomers }/>
             <Route path="*" exact component={ ErrorPAge }/>
+           
           </Switch>
       </div>
    </div>

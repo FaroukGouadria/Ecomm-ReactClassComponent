@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 export default class CustomersList extends Component {
     constructor(props) {
@@ -15,7 +16,9 @@ export default class CustomersList extends Component {
             <div>
                 <h4 className="border-bottom m-1 p-1">{this.state.pageTitle} <span >{this.state.customerCount} </span>
 
-                    <button className="btn btn-info" onClick={this.refreche}>Refresh</button>
+                    <button className="btn btn-info m-2" onClick={this.refreche}>Refresh</button>
+                    
+                    <Link className="btn btn-info" to="/new-customer">New Customer</Link>
                 </h4>
                 <table className="table">
                     <thead>
