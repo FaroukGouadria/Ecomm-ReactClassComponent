@@ -12,6 +12,7 @@ import ErrorPAge from './components/ErrorPAge';
 import SideBar from './components/SideBar';
 import ProductByID from './components/ProductByID';
 import InsertCustomers from './components/InsertCustomers';
+import UpdateCustomer from './components/UpdateCustomer';
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -40,6 +41,7 @@ export default class App extends Component{
             <Route path="/dashboard" exact component={ Dashboard }/>
              <Route path="/products/:id" exact component={ ProductByID }/>
               <Route path="/new-customer" exact component={ InsertCustomers }/>
+               <Route path="/update-customer/:id" exact component={ UpdateCustomer }/>
             <Route path="*" exact component={ ErrorPAge }/>
            
           </Switch>

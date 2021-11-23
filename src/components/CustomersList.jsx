@@ -17,7 +17,7 @@ export default class CustomersList extends Component {
                 <h4 className="border-bottom m-1 p-1">{this.state.pageTitle} <span >{this.state.customerCount} </span>
 
                     <button className="btn btn-info m-2" onClick={this.refreche}>Refresh</button>
-                    
+
                     <Link className="btn btn-info" to="/new-customer">New Customer</Link>
                 </h4>
                 <table className="table">
@@ -69,6 +69,9 @@ export default class CustomersList extends Component {
                         <td>{cust.name}</td>
                         <td >{this.getPhone(cust.phone)}</td>
                         <td>{cust.address.city}</td>
+                        <td>
+                            <Link to={`/update-customer/${cust.id}`}>Update</Link>
+                        </td>
                     </tr>
                 );
             })
@@ -79,8 +82,14 @@ export default class CustomersList extends Component {
         document.title = "Customers-MyApp"
         //get request (/customers)
         let response = await fetch("http://localhost:5001/customers", { method: "GET" });
-        let body = await response.json();
-        this.setState({ customers: body });
+        if (response.ok)//200 to 299
+        {
+            let body = await response.json();
+            this.setState({ customers: body });
+        } else {
+            console.log("Error" + response.status);
+        }
+
     }
     changePick = (cust, index) => {
         //get exixting customer
