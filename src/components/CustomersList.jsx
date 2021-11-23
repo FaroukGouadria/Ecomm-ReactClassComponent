@@ -28,6 +28,7 @@ export default class CustomersList extends Component {
                             <th>Name</th>
                             <th>Phone</th>
                             <th>City</th>
+                            <th> Options</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,7 +72,9 @@ export default class CustomersList extends Component {
                         <td>{cust.address.city}</td>
                         <td>
                             <Link to={`/update-customer/${cust.id}`}>Update</Link>
+                            <button className="btn btn-danger" onClick={()=>this.onDeleteClick(cust.id)}>Delete</button>
                         </td>
+
                     </tr>
                 );
             })
@@ -85,7 +88,7 @@ export default class CustomersList extends Component {
         if (response.ok)//200 to 299
         {
             let body = await response.json();
-            this.setState({ customers: body });
+            this.setState({ customers: body, customerCount:body.length});
         } else {
             console.log("Error" + response.status);
         }
@@ -100,5 +103,17 @@ export default class CustomersList extends Component {
             customers: curtArray
         })
     }
-
+    onDeleteClick=async(id)=>{
+            if(window.confirm("Are you sure to delete this customer ?"))
+            {
+                var response = await fetch(`http://localhost:5001/customers/${id}`,{method:"DELETE"});
+                if(response.ok){
+                    var allCustomers=[...this.state.customers];
+                    allCustomers=allCustomers.filter((cust)=>{
+                        return cust.id !== id;
+                    });
+                    this.setState({customers:allCustomers})
+                }
+            }
+    }
 }
