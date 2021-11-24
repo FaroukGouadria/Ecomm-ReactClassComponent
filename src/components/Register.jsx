@@ -51,6 +51,9 @@ export default class Register extends Component {
 
                                 }}
                             />
+                            <div className='text-danger'>
+                                {this.state.errors.email[0] && this.state.dirty.email ? this.state.errors.email : ""}
+                            </div>
                         </div>
                     </div>
                     <div className='form-group form-row'>
@@ -67,6 +70,9 @@ export default class Register extends Component {
                                     this.setState({ dirty: dirty }, this.validate);
 
                                 }} />
+                            <div className='text-danger'>
+                                {this.state.errors.username[0] && this.state.dirty.username ? this.state.errors.username : ""}
+                            </div>
                         </div>
                     </div>
                     <br />
@@ -85,6 +91,9 @@ export default class Register extends Component {
 
                                 }}
                             />
+                            <div className='text-danger'>
+                                {this.state.errors.dateOfBirth[0] && this.state.dirty.dateOfBirth ? this.state.errors.dateOfBirth : ""}
+                            </div>
                         </div>
                     </div>
                     <br />
@@ -103,6 +112,9 @@ export default class Register extends Component {
 
                                 }}
                             />
+                            <div className='text-danger'>
+                                {this.state.errors.password[0] && this.state.dirty.password ? this.state.errors.password : ""}
+                            </div>
                         </div>
                     </div>
                     <div className='form-group form-row'>
@@ -137,6 +149,9 @@ export default class Register extends Component {
                                     }}
                                 />
                                 <label className='form-check-label' htmlFor='female' >Female</label>
+                            </div>
+                            <div className='text-danger'>
+                                {this.state.errors.gender[0] && this.state.dirty.gender ? this.state.errors.gender : ""}
                             </div>
                         </div>
                     </div>
@@ -405,7 +420,11 @@ export default class Register extends Component {
                                 <option value="Zambie" > Zambie </option>
                                 <option value="Zimbabwe" > Zimbabwe </option>
                             </select>
+                            <div className='text-danger'>
+                                {this.state.errors.country[0] && this.state.dirty.country ? this.state.errors.country : ""}
+                            </div> 
                         </div>
+
                     </div>
                     <div className="row">
                         <div className="col-lg-6">
