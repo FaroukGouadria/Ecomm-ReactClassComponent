@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import history from "../history";
 export default class Login extends Component {
     constructor(props) {
         super(props)
@@ -37,32 +36,32 @@ export default class Login extends Component {
 
                 </div>
             </div>
-        
+
         )
     }
 
-    onLoginClick =async () => {
-        
-        console.log(this.state);
-        var response = await fetch(`http://localhost:5001/Users?email=${this.state.email}&password=${this.state.password}`,{methode:'GET'});
+    onLoginClick = async () => {
 
-        var body= await response.json();
+        console.log(this.state);
+        var response = await fetch(`http://localhost:5001/Users?email=${this.state.email}&password=${this.state.password}`, { methode: 'GET' });
+
+        var body = await response.json();
         console.log(body);
-         if (body.length > 0) {
+        if (body.length > 0) {
             //success:update the message property of state of current component
             this.setState({
                 message: <span className="text-success">Successfully logged-in
                 </span>
             });
             //call the AppComponent's updateLoggedIn method
-             this.props.updateLogginIn(true);
-             //navigate to dashboard
-             this.props.history.replace("/dashboard");
+            this.props.updateLogginIn(true);
+            //navigate to dashboard
+            this.props.history.replace("/dashboard");
         } else {
             //error
             this.setState({
                 message: <span className="text-danger">failed logged-in
-                </span> 
+                </span>
             });
         }
 
@@ -88,7 +87,7 @@ export default class Login extends Component {
         //     });
         // }
     }
-    componentDidMount(){
-        document.title="Login-MyApp"
+    componentDidMount() {
+        document.title = "Login-MyApp"
     }
 }

@@ -422,7 +422,7 @@ export default class Register extends Component {
                             </select>
                             <div className='text-danger'>
                                 {this.state.errors.country[0] && this.state.dirty.country ? this.state.errors.country : ""}
-                            </div> 
+                            </div>
                         </div>
 
                     </div>
@@ -447,7 +447,7 @@ export default class Register extends Component {
                             })}
                         </ul>
                         <div>
-                            {JSON.stringify(this.state)}
+                            {/* {JSON.stringify(this.state)} */}
                         </div>
                     </div>
                 </div>
@@ -534,7 +534,7 @@ export default class Register extends Component {
 
         return valid;
     }
-    OnRegisterClick = () => {
+    OnRegisterClick = async () => {
         this.validate();
         var dirty = this.state.dirty;
         Object.keys(dirty).forEach((control) => {
@@ -543,7 +543,37 @@ export default class Register extends Component {
         });
         this.setState({ dirty: dirty });
         if (this.isValid()) {
-            this.setState({ message: "valid" })
+            let user = {
+                email: this.state.email,
+                username: this.state.username,
+                dateOfBirth: this.state.dateOfBirth,
+                password: this.state.password,
+                gender: this.state.gender,
+                country: this.state.country,
+            };
+            let response = await fetch('http://localhost:5001/Users', {
+                method: "POST", body: JSON.stringify(user),
+                headers: {
+                    "Content-type": "application/json",
+                },
+            });
+            let body = await response.json();
+            if (response.ok) {
+                this.setState({
+                    message: (
+                        <span className='text-success'>Successfully Registered</span>
+                    ),
+                });
+
+            } else {
+                console.log(response, body);
+                this.setState({
+                    message: (
+                        <span className='text-danger'>Error in Registration</span>
+                    ),
+                });
+
+            }
         } else {
             this.setState({ message: "Invalid" })
         }
