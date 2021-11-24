@@ -3,7 +3,7 @@ import './App.css';
 import CustomersList from './components/CustomersList';
 import ShoppingCart from './components/ShoppingCart';
 import NavBar from './components/NavBar';
-import {Router,Route,Switch,HashRouter} from "react-router-dom"
+import {Route,Switch,HashRouter} from "react-router-dom"
 import { Component } from 'react';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
@@ -13,6 +13,7 @@ import SideBar from './components/SideBar';
 import ProductByID from './components/ProductByID';
 import InsertCustomers from './components/InsertCustomers';
 import UpdateCustomer from './components/UpdateCustomer';
+import Register from './components/Register';
 export default class App extends Component{
   constructor(props){
     super(props);
@@ -38,6 +39,7 @@ export default class App extends Component{
             <Route path="/customers" exact component={ CustomersList }/>
             <Route path="/cart" exact component={ ShoppingCart }/>
             <Route path="/" exact render={(props)=> (<Login {...props} updateLogginIn={this.updateLogginIn}/>) }/>
+          <Route path="/register" exact component={ Register }/>
             <Route path="/dashboard" exact component={ Dashboard }/>
              <Route path="/products/:id" exact component={ ProductByID }/>
               <Route path="/new-customer" exact component={ InsertCustomers }/>

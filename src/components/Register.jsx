@@ -1,0 +1,67 @@
+import React, { Component } from 'react'
+
+export default class Register extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: "",
+            username: "",
+            dateOfBirth: "",
+            password: ""
+
+        }
+    }
+    render() {
+        return (
+            <div className='row'>
+                <div className="col-lg-6 mx-auto">
+                    <h1>Rgister</h1>
+                    <br />
+                    <div className='form-group form-row'>
+                        <label className='col-lg-4 col-form-label' htmlFor='email'>Email</label>
+                        <div className='col-lg-8'>
+                            <input type="text" id="email" className='form-control' value={this.state.email} onChange={(event) => {
+                                this.setState({ email: event.target.value });
+                            }} />
+                        </div>
+                    </div>
+                    <br />
+                    <div className='form-group form-row'>
+                        <label className='col-lg-4 col-form-label' htmlFor='name'>UserName</label>
+                        <div className='col-lg-8'>
+                            <input type="text" id="name" className='form-control' value={this.state.username} onChange={(event) => {
+                                this.setState({ username: event.target.value });
+                            }} />
+                        </div>
+                    </div>
+                    <br />
+                    <div className='form-group form-row'>
+                        <label className='col-lg-4 col-form-label' htmlFor='date'>Date Of BirthDay</label>
+                        <div className='col-lg-8'>
+                            <input type="date" id="date" className='form-control' value={this.state.dateOfBirth} onChange={(event) => {
+                                this.setState({ dateOfBirth: event.target.value });
+                            }} />
+                        </div>
+                    </div>
+                    <br />
+                    <div className='form-group form-row'>
+                        <label className='col-lg-4 col-form-label' htmlFor='password'>Password</label>
+                        <div className='col-lg-8'>
+                            <input type="password" id="password" className='form-control' value={this.state.password} onChange={(event) => {
+                                this.setState({ password: event.target.value });
+                            }} />
+                        </div>
+                    </div>
+                    <br/>
+                    <div className="row">
+                        <div className="col-lg-6">
+                            <button className="btn btn-primary m-2" onClick={this.OnRegisterClick}>
+                                Register
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
