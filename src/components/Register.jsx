@@ -8,12 +8,14 @@ export default class Register extends Component {
             username: "",
             dateOfBirth: "",
             password: "",
-            controls: ["email", "username", "dateOfBirth", "password"],
+            gender: "",
+            controls: ["email", "username", "dateOfBirth", "password", "gender"],
             errors: {
                 email: [],
                 username: [],
                 dateOfBirth: [],
                 password: [],
+                gender: [],
             },
             message: "",
             dirty: {
@@ -21,6 +23,7 @@ export default class Register extends Component {
                 username: false,
                 dateOfBirth: false,
                 password: false,
+                gender: false,
             }
         };
     }
@@ -97,6 +100,41 @@ export default class Register extends Component {
 
                                 }}
                             />
+                        </div>
+                    </div>
+                    <div className='form-group form-row'>
+                        <label className='col-lg-4'>Gender</label>
+                        <div className='col-lg-8'>
+                            <div className='form-check'>
+                                <input type="radio" id="male" name="gender" className='form-heck-input' value="male" checked={this.state.gender === "male" ? true : false}
+                                    onChange={(event) => {
+                                        let dirty = this.state.dirty;
+                                        dirty.gender = true;
+                                        this.setState({ gender: event.target.value });
+                                    }}
+                                    onBlur={(event) => {
+                                        let dirty = this.state.dirty;
+                                        dirty.gender = true;
+                                        this.setState({ dirty: dirty });
+                                    }}
+                                />
+                                <label className='form-check-label' htmlFor='male' >Male</label>
+                            </div>
+                            <div className='form-check'>
+                                <input type="radio" id="female" name="gender" value="female" className='form-heck-input' checked={this.state.gender === "female" ? true : false}
+                                    onChange={(event) => {
+                                        let dirty = this.state.dirty;
+                                        dirty.gender = true;
+                                        this.setState({ gender: event.target.value });
+                                    }}
+                                    onBlur={(event) => {
+                                        let dirty = this.state.dirty;
+                                        dirty.gender = true;
+                                        this.setState({ dirty: dirty });
+                                    }}
+                                />
+                                <label className='form-check-label' htmlFor='female' >Female</label>
+                            </div>
                         </div>
                     </div>
                     <div className="row">
@@ -178,10 +216,12 @@ export default class Register extends Component {
                             errors[control].push("Minimum age is 18 years");
                         }
                     }
-
-
-
                     break;
+                    case "gender":
+                    if (!this.state[control]) {
+                        errors[control].push("Gender can't be blank");
+                    }
+                        break;
                 default:
                     break;
             }
