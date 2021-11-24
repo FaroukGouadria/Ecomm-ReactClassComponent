@@ -31,7 +31,6 @@ export default class Register extends Component {
                             }} />
                         </div>
                     </div>
-                    <br />
                     <div className='form-group form-row'>
                         <label className='col-lg-4 col-form-label' htmlFor='name'>UserName</label>
                         <div className='col-lg-8'>
@@ -58,7 +57,6 @@ export default class Register extends Component {
                             }} />
                         </div>
                     </div>
-                    <br />
                     <div className="row">
                         <div className="col-lg-6">
                             <button className="btn btn-primary m-2" onClick={this.OnRegisterClick}>
@@ -82,6 +80,7 @@ export default class Register extends Component {
     }
     validate = () => {
         const validaEmailRegex = /\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/;
+        const validPasswordRegex = /((?=.*\d)(?=.[a-z])(?=.*[A-Z]).{6,15})/;
         let errors = {};
         //bch na9raw kol control min table controls
         this.state.controls.forEach((control) => {
@@ -99,6 +98,40 @@ export default class Register extends Component {
                             errors[control].push("Invalid Email");
                         }
                     }
+                    break;
+                case "password":
+                    //password can't be blank
+                    if (!this.state[control]) {
+                        errors[control].push("password can't be blank");
+                    }
+                    if (this.state.password) {
+
+                        if (!validPasswordRegex.test(this.state[control])) {
+                            errors[control].push("password must be 6 to 15 characters long with at least one uppercase letter,one lowercase letter and one digit");
+                        }
+                    }
+                    break;
+                case "username":
+                    if (!this.state[control]) {
+                        errors[control].push("username can't be blank");
+                    }
+                    break;
+                case "dateOfBirth":
+                    if (!this.state[control]) {
+                        errors[control].push("date of birthDay can't be blank");
+                    }
+                    //date should be 18 years old
+                    if (this.state[control]) {
+
+                        let dob = new Date(this.state[control]).getTime();//date in milliseconds
+                        let today = new Date().getTime();
+                        if (today - 18 * 365.25 * 24 * 60 * 60 * 1000 < dob) {
+                            errors[control].push("Minimum age is 18 years");
+                        }
+                    }
+
+
+
                     break;
                 default:
                     break;
